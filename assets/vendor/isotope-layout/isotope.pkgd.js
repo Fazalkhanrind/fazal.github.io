@@ -2558,7 +2558,7 @@ return Item;
     }
 
     this.maxY = 0;
-    this.horizontalColIndex = 0;
+    this.horizontalColindex = 0;
   };
 
   proto.measureColumns = function() {
@@ -2666,13 +2666,13 @@ return Item;
 
   // get column position based on horizontal index. #873
   proto._getHorizontalColPosition = function( colSpan, item ) {
-    var col = this.horizontalColIndex % this.cols;
+    var col = this.horizontalColindex % this.cols;
     var isOver = colSpan > 1 && col + colSpan > this.cols;
     // shift to next row if item can't fit on current row
     col = isOver ? 0 : col;
     // don't let zero-size items take up space
     var hasSize = item.size.outerWidth && item.size.outerHeight;
-    this.horizontalColIndex = hasSize ? col + colSpan : this.horizontalColIndex;
+    this.horizontalColindex = hasSize ? col + colSpan : this.horizontalColindex;
 
     return {
       col: col,

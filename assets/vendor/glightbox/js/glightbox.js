@@ -551,14 +551,14 @@
     var highestOrder = Math.max.apply(Math, orders.map(function (order) {
       return parseInt(order);
     }));
-    var newIndex = current < 0 ? 1 : current + 1;
+    var newindex = current < 0 ? 1 : current + 1;
 
-    if (newIndex > highestOrder) {
-      newIndex = '1';
+    if (newindex > highestOrder) {
+      newindex = '1';
     }
 
     var nextOrders = orders.filter(function (el) {
-      return el >= parseInt(newIndex);
+      return el >= parseInt(newindex);
     });
     var nextFocus = nextOrders.sort()[0];
     return document.querySelector(".gbtn[data-taborder=\"".concat(nextFocus, "\"]"));
@@ -2534,7 +2534,7 @@
         }
 
         this.activeSlide = null;
-        this.prevActiveSlideIndex = null;
+        this.prevActiveSlideindex = null;
         this.prevActiveSlide = null;
         var index = isNumber(startAt) ? startAt : this.settings.startAt;
 
@@ -2547,7 +2547,7 @@
           }
 
           if (isNil(index)) {
-            index = this.getElementIndex(element);
+            index = this.getElementindex(element);
 
             if (index < 0) {
               index = 0;
@@ -2652,7 +2652,7 @@
             slide: slideNode,
             slideNode: slideNode,
             slideConfig: slide.slideConfig,
-            slideIndex: this.index,
+            slideindex: this.index,
             trigger: slide.node,
             player: null
           };
@@ -2705,7 +2705,7 @@
           slide: slideNode,
           slideNode: slideNode,
           slideConfig: slide.slideConfig,
-          slideIndex: index,
+          slideindex: index,
           trigger: slide.node,
           player: null
         };
@@ -2738,7 +2738,7 @@
       value: function goToSlide() {
         var index = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
         this.prevActiveSlide = this.activeSlide;
-        this.prevActiveSlideIndex = this.index;
+        this.prevActiveSlideindex = this.index;
 
         if (!this.loop() && (index < 0 || index > this.elements.length - 1)) {
           return false;
@@ -2804,7 +2804,7 @@
           slide: addedSlideNode,
           slideNode: addedSlideNode,
           slideConfig: data,
-          slideIndex: index,
+          slideindex: index,
           trigger: null,
           player: addedSlidePlayer
         });
@@ -2829,7 +2829,7 @@
         var slide = this.slidesContainer && this.slidesContainer.querySelectorAll('.gslide')[index];
 
         if (slide) {
-          if (this.getActiveSlideIndex() == index) {
+          if (this.getActiveSlideindex() == index) {
             if (index == this.elements.length - 1) {
               this.prevSlide();
             } else {
@@ -2855,20 +2855,20 @@
         var slideMedia = slide.querySelector('.gslide-media');
         var slideDesc = slide.querySelector('.gslide-description');
         var prevData = {
-          index: this.prevActiveSlideIndex,
+          index: this.prevActiveSlideindex,
           slide: this.prevActiveSlide,
           slideNode: this.prevActiveSlide,
-          slideIndex: this.prevActiveSlide,
-          slideConfig: isNil(this.prevActiveSlideIndex) ? null : this.elements[this.prevActiveSlideIndex].slideConfig,
-          trigger: isNil(this.prevActiveSlideIndex) ? null : this.elements[this.prevActiveSlideIndex].node,
-          player: this.getSlidePlayerInstance(this.prevActiveSlideIndex)
+          slideindex: this.prevActiveSlide,
+          slideConfig: isNil(this.prevActiveSlideindex) ? null : this.elements[this.prevActiveSlideindex].slideConfig,
+          trigger: isNil(this.prevActiveSlideindex) ? null : this.elements[this.prevActiveSlideindex].node,
+          player: this.getSlidePlayerInstance(this.prevActiveSlideindex)
         };
         var nextData = {
           index: this.index,
           slide: this.activeSlide,
           slideNode: this.activeSlide,
           slideConfig: this.elements[this.index].slideConfig,
-          slideIndex: this.index,
+          slideindex: this.index,
           trigger: this.elements[this.index].node,
           player: this.getSlidePlayerInstance(this.index)
         };
@@ -2900,7 +2900,7 @@
           var effectName = this.settings.slideEffect;
           var animIn = effectName !== 'none' ? this.settings.cssEfects[effectName]["in"] : effectName;
 
-          if (this.prevActiveSlideIndex > this.index) {
+          if (this.prevActiveSlideindex > this.index) {
             if (this.settings.slideEffect == 'slide') {
               animIn = this.settings.cssEfects.slideBack["in"];
             }
@@ -2946,19 +2946,19 @@
         this.slidePlayerPause(prevSlide);
         this.trigger('slide_before_change', {
           prev: {
-            index: this.prevActiveSlideIndex,
+            index: this.prevActiveSlideindex,
             slide: this.prevActiveSlide,
             slideNode: this.prevActiveSlide,
-            slideIndex: this.prevActiveSlideIndex,
-            slideConfig: isNil(this.prevActiveSlideIndex) ? null : this.elements[this.prevActiveSlideIndex].slideConfig,
-            trigger: isNil(this.prevActiveSlideIndex) ? null : this.elements[this.prevActiveSlideIndex].node,
-            player: this.getSlidePlayerInstance(this.prevActiveSlideIndex)
+            slideindex: this.prevActiveSlideindex,
+            slideConfig: isNil(this.prevActiveSlideindex) ? null : this.elements[this.prevActiveSlideindex].slideConfig,
+            trigger: isNil(this.prevActiveSlideindex) ? null : this.elements[this.prevActiveSlideindex].node,
+            player: this.getSlidePlayerInstance(this.prevActiveSlideindex)
           },
           current: {
             index: this.index,
             slide: this.activeSlide,
             slideNode: this.activeSlide,
-            slideIndex: this.index,
+            slideindex: this.index,
             slideConfig: this.elements[this.index].slideConfig,
             trigger: this.elements[this.index].node,
             player: this.getSlidePlayerInstance(this.index)
@@ -2967,9 +2967,9 @@
 
         if (isFunction(this.settings.beforeSlideChange)) {
           this.settings.beforeSlideChange.apply(this, [{
-            index: this.prevActiveSlideIndex,
+            index: this.prevActiveSlideindex,
             slide: this.prevActiveSlide,
-            player: this.getSlidePlayerInstance(this.prevActiveSlideIndex)
+            player: this.getSlidePlayerInstance(this.prevActiveSlideindex)
           }, {
             index: this.index,
             slide: this.activeSlide,
@@ -2977,7 +2977,7 @@
           }]);
         }
 
-        if (this.prevActiveSlideIndex > this.index && this.settings.slideEffect == 'slide') {
+        if (this.prevActiveSlideindex > this.index && this.settings.slideEffect == 'slide') {
           animOut = this.settings.cssEfects.slideBack.out;
         }
 
@@ -3135,8 +3135,8 @@
         }
       }
     }, {
-      key: "getElementIndex",
-      value: function getElementIndex(node) {
+      key: "getElementindex",
+      value: function getElementindex(node) {
         var index = false;
 
         each(this.elements, function (el, i) {
@@ -3224,8 +3224,8 @@
         return this.slidesContainer.querySelectorAll('.gslide')[this.index];
       }
     }, {
-      key: "getActiveSlideIndex",
-      value: function getActiveSlideIndex() {
+      key: "getActiveSlideindex",
+      value: function getActiveSlideindex() {
         return this.index;
       }
     }, {
@@ -3532,7 +3532,7 @@
 
         animateElement(this.activeSlide, this.settings.cssEfects[this.settings.closeEffect].out, function () {
           _this8.activeSlide = null;
-          _this8.prevActiveSlideIndex = null;
+          _this8.prevActiveSlideindex = null;
           _this8.prevActiveSlide = null;
           _this8.built = false;
 
