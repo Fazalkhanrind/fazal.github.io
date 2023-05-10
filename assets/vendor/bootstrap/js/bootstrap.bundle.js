@@ -1388,13 +1388,13 @@
         return;
       }
 
-      const activeIndex = this._getItemIndex(this._getActive());
+      const activeindex = this._getItemindex(this._getActive());
 
-      if (activeIndex === index) {
+      if (activeindex === index) {
         return;
       }
 
-      const order = index > activeIndex ? ORDER_NEXT : ORDER_PREV;
+      const order = index > activeindex ? ORDER_NEXT : ORDER_PREV;
 
       this._slide(order, items[index]);
     }
@@ -1476,7 +1476,7 @@
       }
     }
 
-    _getItemIndex(element) {
+    _getItemindex(element) {
       return this._getItems().indexOf(element);
     }
 
@@ -1521,14 +1521,14 @@
         return;
       }
 
-      const nextElementIndex = this._getItemIndex(nextElement);
+      const nextElementindex = this._getItemindex(nextElement);
 
       const triggerEvent = eventName => {
         return EventHandler.trigger(this._element, eventName, {
           relatedTarget: nextElement,
           direction: this._orderToDirection(order),
-          from: this._getItemIndex(activeElement),
-          to: nextElementIndex
+          from: this._getItemindex(activeElement),
+          to: nextElementindex
         });
       };
 
@@ -1548,7 +1548,7 @@
       this.pause();
       this._isSliding = true;
 
-      this._setActiveIndicatorElement(nextElementIndex);
+      this._setActiveIndicatorElement(nextElementindex);
 
       this._activeElement = nextElement;
       const directionalClassName = isNext ? CLASS_NAME_START : CLASS_NAME_END;
@@ -1643,10 +1643,10 @@
 
     event.preventDefault();
     const carousel = Carousel.getOrCreateInstance(target);
-    const slideIndex = this.getAttribute('data-bs-slide-to');
+    const slideindex = this.getAttribute('data-bs-slide-to');
 
-    if (slideIndex) {
-      carousel.to(slideIndex);
+    if (slideindex) {
+      carousel.to(slideindex);
 
       carousel._maybeEnableCycle();
 
